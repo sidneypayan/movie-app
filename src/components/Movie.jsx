@@ -2,8 +2,14 @@ import { useContext } from 'react'
 import moviesContext from '../context/moviesContext'
 
 function Movie({ movie }) {
-	const { addMovieToFavorite, removeMovieFromFavorite, favoriteMovies } =
-		useContext(moviesContext)
+	const {
+		addMovieToFavorite,
+		removeMovieFromFavorite,
+		addMovieToWatched,
+		removeMovieFromWatched,
+		favoriteMovies,
+		watchedMovies,
+	} = useContext(moviesContext)
 
 	function isFavorite(id) {
 		if (favoriteMovies.some(item => item.id === id)) {
@@ -23,13 +29,21 @@ function Movie({ movie }) {
 		}
 	}
 
+	function isWatched(id) {
+		if (watchedMovies.some(item => item.id === id)) {
+			return <div onClick={() => removeMovieFromWatched(movie.id)}>-</div>
+		} else {
+			return <div onClick={() => addMovieToWatched(movie)}>+</div>
+		}
+	}
+
 	return (
 		<div className='movie'>
 			<img
 				src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`}
 				alt={movie.title}
 			/>
-			<span className='movie-add'>+</span>
+			<span className='movie-add'>{isWatched(movie.id)}</span>
 			<span className='movie-favorite'>{isFavorite(movie.id)}</span>
 			<div className='movie-info'>
 				<h3>{movie.title}</h3>
