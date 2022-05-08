@@ -1,23 +1,23 @@
 function useFetch() {
 	const API_KEY = '9d64e2a5fae568c0beed810bbf76d497'
 	const SEARCH_URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`
-	const TREND_URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`
+	const POPULAR_MOVIES_URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=1`
 
 	async function getMovieByName(movieName) {
 		const res = await fetch(`${SEARCH_URL}${movieName}`)
 		const data = await res.json()
 
-		return data
+		return data.results
 	}
 
-	async function getTrendingMovies() {
-		const res = await fetch(`${TREND_URL}`)
+	async function getPopularMovies() {
+		const res = await fetch(`${POPULAR_MOVIES_URL}`)
 		const data = await res.json()
 
 		return data.results
 	}
 
-	return { getMovieByName, getTrendingMovies }
+	return { getMovieByName, getPopularMovies }
 }
 
 export default useFetch

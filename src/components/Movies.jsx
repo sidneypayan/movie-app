@@ -1,17 +1,12 @@
-import { useEffect, useState } from 'react'
-import useFetch from '../hooks/useFetch'
+import { useContext } from 'react'
 
+import moviesContext from '../context/moviesContext'
 import Movie from './Movie'
 
 function Movies() {
-	const [trendingMovies, setTrendingMovies] = useState([])
-	const { getTrendingMovies } = useFetch()
+	const { homePageMovies } = useContext(moviesContext)
 
-	useEffect(() => {
-		getTrendingMovies().then(res => setTrendingMovies(res))
-	}, [])
-
-	return trendingMovies.map(movie => <Movie key={movie.id} movie={movie} />)
+	return homePageMovies.map(movie => <Movie key={movie.id} movie={movie} />)
 }
 
 export default Movies

@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import moviesContext from '../context/moviesContext'
+import moviePic from '../img/movie-pic.jpg'
 
 function Movie({ movie }) {
 	const {
@@ -37,12 +38,26 @@ function Movie({ movie }) {
 		}
 	}
 
+	function imgExists() {
+		if (movie.poster_path) {
+			return (
+				<img
+					src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`}
+					alt={movie.title}
+				/>
+			)
+		} else {
+			return (
+				<div className='movie-no-img'>
+					<h2>{movie.title}</h2>
+				</div>
+			)
+		}
+	}
+
 	return (
 		<div className='movie'>
-			<img
-				src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`}
-				alt={movie.title}
-			/>
+			{imgExists()}
 			<span className='movie-add'>{isWatched(movie.id)}</span>
 			<span className='movie-favorite'>{isFavorite(movie.id)}</span>
 			<div className='movie-info'>
