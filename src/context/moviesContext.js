@@ -13,7 +13,6 @@ export function MoviesContextProvider({ children }) {
 	function updtMovieName(input) {
 		getMovieByName(input).then(res => setHomePageMovies(res))
 	}
-	console.log(homePageMovies)
 
 	function addMovieToFavorite(movie) {
 		setFavoriteMovies(prevFavorite => [...prevFavorite, movie])
