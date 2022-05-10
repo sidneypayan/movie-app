@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import moviesContext from '../context/moviesContext'
+import MoviesContext from '../context/MoviesContext'
 
 function useFavorite() {
 	const { favoriteMovies, addMovieToFavorite, removeMovieFromFavorite } =
-		useContext(moviesContext)
+		useContext(MoviesContext)
 
 	function isFavorite(movie) {
 		if (favoriteMovies.some(item => item.id === movie.id)) {

@@ -1,11 +1,9 @@
 import Header from './components/Header'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-import Home from './components/Home'
-import FilmsAVoir from './components/FilmsAVoir'
-import FilmsVus from './components/FilmsVus'
+import Movies from './components/Movies'
 
-import { MoviesContextProvider } from './context/moviesContext'
+import { MoviesContextProvider } from './context/MoviesContext'
 
 function App() {
 	return (
@@ -14,9 +12,10 @@ function App() {
 				<Header />
 				<main>
 					<Routes>
-						<Route path='/' element={<Home />}></Route>
-						<Route path='/films-a-voir' element={<FilmsAVoir />}></Route>
-						<Route path='/films-vus' element={<FilmsVus />}></Route>
+						<Route path='/' element={<Movies />}>
+							<Route path='films-a-voir' element={<Movies />}></Route>
+							<Route path='films-vus' element={<Movies />}></Route>
+						</Route>
 					</Routes>
 				</main>
 			</Router>

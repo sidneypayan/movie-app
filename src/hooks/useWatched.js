@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import moviesContext from '../context/moviesContext'
+import MoviesContext from '../context/MoviesContext'
 
 function useWatched() {
 	const { watchedMovies, addMovieToWatched, removeMovieFromWatched } =
-		useContext(moviesContext)
+		useContext(MoviesContext)
 
 	function isWatched(movie) {
 		if (watchedMovies.some(item => item.id === movie.id)) {

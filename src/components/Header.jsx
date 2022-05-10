@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useContext, useState } from 'react'
 
-import moviesContext from '../context/moviesContext'
+import MoviesContext from '../context/MoviesContext'
 
 function Header() {
-	const { updtMovieName } = useContext(moviesContext)
+	const { updtMovieName, setMenuSectionToFavorite, setMenuSectionToWatched } =
+		useContext(MoviesContext)
 
 	const [movieName, setMovieName] = useState('')
 
@@ -18,14 +19,15 @@ function Header() {
 			<nav className='header__nav'>
 				<ul>
 					<li>
-						<Link to='/films-a-voir'>
-							{' '}
+						<Link to='/'>Films populaires</Link>
+					</li>
+					<li>
+						<Link to='/films-a-voir' onClick={setMenuSectionToFavorite}>
 							Films à voir <i className='fa-regular fa-heart'></i>
 						</Link>
 					</li>
 					<li>
-						<Link to='/films-vus'>
-							{' '}
+						<Link to='/films-vus' onClick={setMenuSectionToWatched}>
 							Films vus <i className='fa-solid fa-plus'></i>
 						</Link>
 					</li>

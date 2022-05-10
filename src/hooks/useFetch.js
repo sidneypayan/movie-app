@@ -17,7 +17,26 @@ function useFetch() {
 		return data.results
 	}
 
-	return { getMovieByName, getPopularMovies }
+	async function getFavoriteMovies() {
+		const res = await fetch('/favorite')
+		const data = await res.json()
+
+		return data
+	}
+
+	async function getWatchedMovies() {
+		const res = await fetch('/watched')
+		const data = await res.json()
+
+		return data
+	}
+
+	return {
+		getMovieByName,
+		getPopularMovies,
+		getFavoriteMovies,
+		getWatchedMovies,
+	}
 }
 
 export default useFetch

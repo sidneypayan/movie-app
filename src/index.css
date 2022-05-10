@@ -46,6 +46,10 @@ ul {
 	border-radius: 50px;
 }
 
+.header__nav ul li div {
+	cursor: pointer;
+}
+
 .header__nav ul li:hover {
 	background-color: var(--primary-color);
 }

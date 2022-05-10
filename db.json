@@ -1,0 +1,66 @@
+{
+  "favorite": [
+    {
+      "adult": false,
+      "backdrop_path": "/iQFcwSGbZXMkeyKrxbPnwnRo5fl.jpg",
+      "genre_ids": [
+        28,
+        12,
+        878
+      ],
+      "id": 634649,
+      "original_language": "en",
+      "original_title": "Spider-Man: No Way Home",
+      "overview": "Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.",
+      "popularity": 4270.23,
+      "poster_path": "/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
+      "release_date": "2021-12-15",
+      "title": "Spider-Man: No Way Home",
+      "video": false,
+      "vote_average": 8.1,
+      "vote_count": 12564
+    }
+  ],
+  "watched": [
+    {
+      "adult": false,
+      "backdrop_path": "/iQFcwSGbZXMkeyKrxbPnwnRo5fl.jpg",
+      "genre_ids": [
+        28,
+        12,
+        878
+      ],
+      "id": 634649,
+      "original_language": "en",
+      "original_title": "Spider-Man: No Way Home",
+      "overview": "Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.",
+      "popularity": 4270.23,
+      "poster_path": "/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
+      "release_date": "2021-12-15",
+      "title": "Spider-Man: No Way Home",
+      "video": false,
+      "vote_average": 8.1,
+      "vote_count": 12564
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/192vHmAPbk5esL34XMKZ1YLGFjr.jpg",
+      "genre_ids": [
+        28,
+        53,
+        80
+      ],
+      "id": 763285,
+      "original_language": "en",
+      "original_title": "Ambulance",
+      "overview": "Decorated veteran Will Sharp, desperate for money to cover his wife's medical bills, asks for help from his adoptive brother Danny. A charismatic career criminal, Danny instead offers him a score: the biggest bank heist in Los Angeles history: $32 million.",
+      "popularity": 3117.704,
+      "poster_path": "/kuxjMVuc3VTD7p42TZpJNsSrM1V.jpg",
+      "release_date": "2022-03-16",
+      "title": "Ambulance",
+      "video": false,
+      "vote_average": 7,
+      "vote_count": 494
+    }
+  ]
+}
