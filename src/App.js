@@ -1,25 +1,25 @@
-import Header from './components/Header'
+import Header from './components/layout/Header'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-import Movies from './components/Movies'
+import Home from './components/pages/Home'
 
-import { MoviesContextProvider } from './context/MoviesContext'
+import { MoviesProvider } from './context/MoviesContext'
 
 function App() {
 	return (
-		<MoviesContextProvider>
+		<MoviesProvider>
 			<Router>
 				<Header />
 				<main>
 					<Routes>
-						<Route path='/' element={<Movies />}>
-							<Route path='films-a-voir' element={<Movies />}></Route>
-							<Route path='films-vus' element={<Movies />}></Route>
+						<Route path='/' element={<Home />}>
+							<Route path='favorite' element={<Home />} />
+							<Route path='watched' element={<Home />} />
 						</Route>
 					</Routes>
 				</main>
 			</Router>
-		</MoviesContextProvider>
+		</MoviesProvider>
 	)
 }
 

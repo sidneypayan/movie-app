@@ -1,17 +1,23 @@
 import { Link } from 'react-router-dom'
-import { useContext, useState } from 'react'
-
-import MoviesContext from '../context/MoviesContext'
+import { useState, useContext } from 'react'
+import MoviesContext from '../../context/MoviesContext'
+import { searchMovies } from '../../context/MoviesActions'
 
 function Header() {
-	const { updtMovieName, setMenuSectionToFavorite, setMenuSectionToWatched } =
-		useContext(MoviesContext)
-
 	const [movieName, setMovieName] = useState('')
 
-	function handleMovieSearch(e) {
+	const { dispatch } = useContext(MoviesContext)
+
+	const handleChange = e => {
 		setMovieName(e.target.value)
-		updtMovieName(e.target.value)
+	}
+
+	const handleSubmit = async e => {
+		e.preventDefault()
+		const movies = await searchMovies(movieName)
+		dispatch({ type: 'GET_MOVIES', payload: movies })
+
+		setMovieName('')
 	}
 
 	return (
@@ -22,22 +28,22 @@ function Header() {
 						<Link to='/'>Films populaires</Link>
 					</li>
 					<li>
-						<Link to='/films-a-voir' onClick={setMenuSectionToFavorite}>
+						<Link to='/favorite'>
 							Films à voir <i className='fa-regular fa-heart'></i>
 						</Link>
 					</li>
 					<li>
-						<Link to='/films-vus' onClick={setMenuSectionToWatched}>
+						<Link to='/watched'>
 							Films vus <i className='fa-solid fa-plus'></i>
 						</Link>
 					</li>
 				</ul>
 			</nav>
 
-			<form className='search-form'>
+			<form className='search-form' onSubmit={handleSubmit}>
 				<input
 					className='search-form__input'
-					onChange={handleMovieSearch}
+					onChange={handleChange}
 					type='text'
 					name='movie'
 					id='movie'

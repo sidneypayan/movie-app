@@ -1,9 +1,19 @@
 import { useContext } from 'react'
 import MoviesContext from '../context/MoviesContext'
 
+import { addMovieToDB } from '../context/MoviesActions'
+
 function useFavorite() {
-	const { favoriteMovies, addMovieToFavorite, removeMovieFromFavorite } =
-		useContext(MoviesContext)
+	const { favoriteMovies, dispatch } = useContext(MoviesContext)
+
+	const addMovieToFavorite = async movie => {
+		const movieData = await addMovieToDB(movie, 'favorite')
+		dispatch({ type: 'ADD_MOVIE_TO_FAVORITE', payload: movieData })
+	}
+
+	// const removeMovieFromFavorite = async id => {
+	//   await removeMovieFromDB(id)
+	// }
 
 	function isFavorite(movie) {
 		if (favoriteMovies.some(item => item.id === movie.id)) {
@@ -11,7 +21,8 @@ function useFavorite() {
 				<i
 					className='fa-solid fa-heart'
 					style={{ fontSize: '1rem', color: 'red' }}
-					onClick={() => removeMovieFromFavorite(movie.id)}></i>
+					// onClick={() => removeMovie(movie.id, 'favorite')}
+				></i>
 			)
 		} else {
 			return (
