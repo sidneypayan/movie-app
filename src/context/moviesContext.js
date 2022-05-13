@@ -13,8 +13,6 @@ export const MoviesProvider = ({ children }) => {
 
 	const [state, dispatch] = useReducer(moviesReducer, initialState)
 
-	console.log(state.watchedMovies)
-
 	return (
 		<MoviesContext.Provider
 			value={{

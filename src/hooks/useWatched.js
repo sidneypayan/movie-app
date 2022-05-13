@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import MoviesContext from '../context/MoviesContext'
 
-import { addMovieToDB } from '../context/MoviesActions'
+import { addMovieToDB, deleteMovieFromDB } from '../context/MoviesActions'
 
 function useWatched() {
 	const { watchedMovies, dispatch } = useContext(MoviesContext)
@@ -11,9 +11,14 @@ function useWatched() {
 		dispatch({ type: 'ADD_MOVIE_TO_WATCHED', payload: movieData })
 	}
 
+	const deleteMovieFromWatched = async id => {
+		await deleteMovieFromDB(id, 'watched')
+		dispatch({ type: 'DELETE_MOVIE_FROM_WATCHED', payload: id })
+	}
+
 	function isWatched(movie) {
 		if (watchedMovies.some(item => item.id === movie.id)) {
-			return <div>-</div>
+			return <div onClick={() => deleteMovieFromWatched(movie.id)}>-</div>
 		} else {
 			return <div onClick={() => addMovieToWatched(movie)}>+</div>
 		}

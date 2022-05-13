@@ -24,11 +24,11 @@ function Home() {
 	}, [dispatch])
 
 	useEffect(() => {
-		const getMoviesData = async () => {
+		const getPopularMoviesData = async () => {
 			const moviesData = await getPopularMovies()
 			dispatch({ type: 'GET_MOVIES', payload: moviesData })
 		}
-		getMoviesData()
+		getPopularMoviesData()
 	}, [dispatch])
 
 	return (

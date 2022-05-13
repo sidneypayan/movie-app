@@ -23,7 +23,9 @@ const moviesReducer = (state, action) => {
 		case 'DELETE_MOVIE_FROM_FAVORITE':
 			return {
 				...state,
-				favoriteMovies: action.payload,
+				favoriteMovies: state.favoriteMovies.filter(
+					item => item.id !== action.payload
+				),
 			}
 		case 'ADD_MOVIE_TO_WATCHED':
 			return {
@@ -33,7 +35,9 @@ const moviesReducer = (state, action) => {
 		case 'DELETE_MOVIE_FROM_WATCHED':
 			return {
 				...state,
-				watchedMovies: action.payload,
+				watchedMovies: state.watchedMovies.filter(
+					item => item.id !== action.payload
+				),
 			}
 
 		default:

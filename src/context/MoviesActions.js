@@ -31,3 +31,9 @@ export const addMovieToDB = async (movie, category) => {
 	const data = await res.json()
 	return data
 }
+
+export const deleteMovieFromDB = async (id, category) => {
+	await fetch(`/${category}/${id}`, {
+		method: 'DELETE',
+	})
+}
