@@ -2,84 +2,25 @@
   "favorite": [
     {
       "adult": false,
-      "backdrop_path": "/AdyJH8kDm8xT8IKTlgpEC15ny4u.jpg",
+      "backdrop_path": "/cqnVuxXe6vA7wfNWubak3x36DKJ.jpg",
       "genre_ids": [
-        14,
         28,
-        12
-      ],
-      "id": 453395,
-      "original_language": "en",
-      "original_title": "Doctor Strange in the Multiverse of Madness",
-      "overview": "Doctor Strange, with the help of mystical allies both old and new, traverses the mind-bending and dangerous alternate realities of the Multiverse to confront a mysterious new adversary.",
-      "popularity": 4074.333,
-      "poster_path": "/wRnbWt44nKjsFPrqSmwYki5vZtF.jpg",
-      "release_date": "2022-05-04",
-      "title": "Doctor Strange in the Multiverse of Madness",
-      "video": false,
-      "vote_average": 7.5,
-      "vote_count": 1311
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/5P8SmMzSNYikXpxil6BYzJ16611.jpg",
-      "genre_ids": [
-        80,
-        9648,
+        12,
+        14,
         53
       ],
-      "id": 414906,
+      "id": 639933,
       "original_language": "en",
-      "original_title": "The Batman",
-      "overview": "In his second year of fighting crime, Batman uncovers corruption in Gotham City that connects to his own family while facing a serial killer known as the Riddler.",
-      "popularity": 4158.844,
-      "poster_path": "/74xTEgt7R36Fpooo50r9T25onhq.jpg",
-      "release_date": "2022-03-01",
-      "title": "The Batman",
+      "original_title": "The Northman",
+      "overview": "Prince Amleth is on the verge of becoming a man when his father is brutally murdered by his uncle, who kidnaps the boy's mother. Two decades later, Amleth is now a Viking who's on a mission to save his mother, kill his uncle and avenge his father.",
+      "popularity": 7895.411,
+      "poster_path": "/zhLKlUaF1SEpO58ppHIAyENkwgw.jpg",
+      "release_date": "2022-04-07",
+      "title": "The Northman",
       "video": false,
-      "vote_average": 7.8,
-      "vote_count": 4451
-    },
-    {
-      "adult": false,
-      "backdrop_path": "/aEGiJJP91HsKVTEPy1HhmN0wRLm.jpg",
-      "genre_ids": [
-        28,
-        12
-      ],
-      "id": 335787,
-      "original_language": "en",
-      "original_title": "Uncharted",
-      "overview": "A young street-smart, Nathan Drake and his wisecracking partner Victor “Sully” Sullivan embark on a dangerous pursuit of “the greatest treasure never found” while also tracking clues that may lead to Nathan’s long-lost brother.",
-      "popularity": 6178.481,
-      "poster_path": "/tlZpSxYuBRoVJBOpUrPdQe9FmFq.jpg",
-      "release_date": "2022-02-10",
-      "title": "Uncharted",
-      "video": false,
-      "vote_average": 7.2,
-      "vote_count": 2098
+      "vote_average": 7.5,
+      "vote_count": 1095
     }
   ],
-  "watched": [
-    {
-      "adult": false,
-      "backdrop_path": "/4BCbim8Zbd3V0vKPMzieGwpE7Rp.jpg",
-      "genre_ids": [
-        18,
-        10749,
-        14
-      ],
-      "id": 24420,
-      "original_language": "en",
-      "original_title": "The Time Traveler's Wife",
-      "overview": "Due to a genetic disorder, handsome librarian Henry DeTamble involuntarily zips through time, appearing at various moments in the life of his true love, the beautiful artist Clare Abshire.",
-      "popularity": 16.118,
-      "poster_path": "/J3ewuzQwhFro0pDpdcbZ4j7MYy.jpg",
-      "release_date": "2009-08-14",
-      "title": "The Time Traveler's Wife",
-      "video": false,
-      "vote_average": 6.9,
-      "vote_count": 2037
-    }
-  ]
+  "watched": []
 }
