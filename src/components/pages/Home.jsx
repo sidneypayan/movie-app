@@ -8,6 +8,14 @@ function Home() {
 	const { dispatch } = useContext(MoviesContext)
 
 	useEffect(() => {
+		const getPopularMoviesData = async () => {
+			const moviesData = await getPopularMovies()
+			dispatch({ type: 'GET_POPULAR_MOVIES', payload: moviesData })
+		}
+		getPopularMoviesData()
+	}, [dispatch])
+
+	useEffect(() => {
 		const getFavoriteMovies = async () => {
 			const favoriteMovies = await getMoviesFromDB('favorite')
 			dispatch({ type: 'GET_FAVORITE_MOVIES', payload: favoriteMovies })
@@ -21,14 +29,6 @@ function Home() {
 			dispatch({ type: 'GET_WATCHED_MOVIES', payload: watchedMovies })
 		}
 		getWatchedMovies()
-	}, [dispatch])
-
-	useEffect(() => {
-		const getPopularMoviesData = async () => {
-			const moviesData = await getPopularMovies()
-			dispatch({ type: 'GET_MOVIES', payload: moviesData })
-		}
-		getPopularMoviesData()
 	}, [dispatch])
 
 	return (

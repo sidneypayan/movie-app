@@ -4,7 +4,7 @@ import MoviesContext from '../context/MoviesContext'
 import { addMovieToDB, deleteMovieFromDB } from '../context/MoviesActions'
 
 function useFavorite() {
-	const { favoriteMovies, dispatch } = useContext(MoviesContext)
+	const { watchedMovies, favoriteMovies, dispatch } = useContext(MoviesContext)
 
 	const addMovieToFavorite = async movie => {
 		const movieData = await addMovieToDB(movie, 'favorite')
@@ -17,19 +17,28 @@ function useFavorite() {
 	}
 
 	function isFavorite(movie) {
+		// Si film déju vu ne pas display icône 'à voir'
+		if (watchedMovies.some(item => item.id === movie.id)) {
+			return ''
+		}
+
 		if (favoriteMovies.some(item => item.id === movie.id)) {
 			return (
-				<i
-					className='fa-solid fa-heart'
-					style={{ fontSize: '1rem', color: 'red' }}
-					onClick={() => deleteMovieFromFavorite(movie.id)}></i>
+				<span className='movie-favorite'>
+					<i
+						className='fa-solid fa-heart'
+						style={{ fontSize: '1rem', color: 'red' }}
+						onClick={() => deleteMovieFromFavorite(movie.id)}></i>
+				</span>
 			)
 		} else {
 			return (
-				<i
-					className='fa-regular fa-heart'
-					style={{ fontSize: '1rem' }}
-					onClick={() => addMovieToFavorite(movie)}></i>
+				<span className='movie-favorite'>
+					<i
+						className='fa-regular fa-heart'
+						style={{ fontSize: '1rem' }}
+						onClick={() => addMovieToFavorite(movie)}></i>
+				</span>
 			)
 		}
 	}

@@ -4,16 +4,26 @@ import MovieItem from './MovieItem'
 import MoviesContext from '../../context/MoviesContext'
 
 function MovieResults() {
-	const { movies, favoriteMovies, watchedMovies } = useContext(MoviesContext)
+	const { movies, popularMovies, favoriteMovies, watchedMovies } =
+		useContext(MoviesContext)
 
 	const location = useLocation()
 
 	let moviesToDisplay = []
-	if (location.pathname === '/') {
+
+	if (location.pathname === '/' && movies.length > 0) {
 		moviesToDisplay = movies
-	} else if (location.pathname === '/favorite') {
+	}
+
+	if (location.pathname === '/' && movies.length === 0) {
+		moviesToDisplay = popularMovies
+	}
+
+	if (location.pathname === '/favorite') {
 		moviesToDisplay = favoriteMovies
-	} else if (location.pathname === '/watched') {
+	}
+
+	if (location.pathname === '/watched') {
 		moviesToDisplay = watchedMovies
 	}
 

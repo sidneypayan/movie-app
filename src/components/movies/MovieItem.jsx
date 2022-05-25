@@ -13,7 +13,7 @@ function MovieItem({ movie }) {
 		<div className='movie'>
 			{imgExists(movie)}
 			<span className='movie-add'>{isWatched(movie)}</span>
-			<span className='movie-favorite'>{isFavorite(movie)}</span>
+			{isFavorite(movie)}
 			<div className='movie-info'>
 				<h3>{title}</h3>
 				<div className='movie-spans'>
