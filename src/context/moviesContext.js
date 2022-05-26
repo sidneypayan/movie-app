@@ -1,5 +1,5 @@
 import { createContext, useReducer } from 'react'
-import moviesReducer from './MoviesReducer'
+import MoviesReducer from './MoviesReducer'
 
 const MoviesContext = createContext()
 
@@ -11,7 +11,7 @@ export const MoviesProvider = ({ children }) => {
 		watchedMovies: [],
 	}
 
-	const [state, dispatch] = useReducer(moviesReducer, initialState)
+	const [state, dispatch] = useReducer(MoviesReducer, initialState)
 
 	return (
 		<MoviesContext.Provider
