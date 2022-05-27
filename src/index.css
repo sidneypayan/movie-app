@@ -37,12 +37,26 @@ ul {
 	display: flex;
 }
 
+.active {
+	border-bottom: 2px solid #7378c5;
+}
+
+.filter__nav ul {
+	display: flex;
+	margin: 2rem;
+}
+
 .header__nav ul li {
 	border: 2px solid var(--primary-color);
 	padding: 0.25rem 0.5rem;
 	margin-right: 0.5rem;
 	border-radius: 50px;
 	cursor: pointer;
+}
+
+.filter__nav ul li {
+	padding: 0.25rem 0.5rem;
+	margin-right: 1rem;
 }
 
 .header__nav ul li:hover {
@@ -54,7 +68,18 @@ ul {
 	text-decoration: none;
 }
 
-.header__nav ul li a:hover {
+.header-active {
+	color: #fff !important;
+}
+
+.filter__nav ul li a {
+	color: #7378c5;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.header__nav ul li a:hover,
+.filter__nav ul li:hover {
 	color: #fff;
 }
 

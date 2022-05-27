@@ -7,6 +7,9 @@ export const MoviesProvider = ({ children }) => {
 	const initialState = {
 		movies: [],
 		popularMovies: [],
+		nowPlayingMovies: [],
+		upcomingMovies: [],
+		topRatedMovies: [],
 		favoriteMovies: [],
 		watchedMovies: [],
 	}

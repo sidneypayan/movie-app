@@ -2,6 +2,9 @@ import { useContext, useEffect } from 'react'
 import MoviesContext from '../../context/MoviesContext'
 import MovieResults from '../movies/MovieResults'
 import { getPopularMovies } from '../../context/MoviesActions'
+import { getNowPlayingMovies } from '../../context/MoviesActions'
+import { getUpcommingMovies } from '../../context/MoviesActions'
+import { getTopRatedMovies } from '../../context/MoviesActions'
 import { getMoviesFromDB } from '../../context/MoviesActions'
 
 function Home() {
@@ -13,6 +16,30 @@ function Home() {
 			dispatch({ type: 'GET_POPULAR_MOVIES', payload: moviesData })
 		}
 		getPopularMoviesData()
+	}, [dispatch])
+
+	useEffect(() => {
+		const getNowPlayingMoviesData = async () => {
+			const moviesData = await getNowPlayingMovies()
+			dispatch({ type: 'GET_NOW_PLAYING_MOVIES', payload: moviesData })
+		}
+		getNowPlayingMoviesData()
+	}, [dispatch])
+
+	useEffect(() => {
+		const getUpcommingMoviesData = async () => {
+			const moviesData = await getUpcommingMovies()
+			dispatch({ type: 'GET_UPCOMING_MOVIES', payload: moviesData })
+		}
+		getUpcommingMoviesData()
+	}, [dispatch])
+
+	useEffect(() => {
+		const getTopRatedMoviesData = async () => {
+			const moviesData = await getTopRatedMovies()
+			dispatch({ type: 'GET_TOP_RATED_MOVIES', payload: moviesData })
+		}
+		getTopRatedMoviesData()
 	}, [dispatch])
 
 	useEffect(() => {

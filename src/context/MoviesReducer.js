@@ -5,10 +5,30 @@ const moviesReducer = (state, action) => {
 				...state,
 				movies: action.payload,
 			}
+		case 'EMPTY_MOVIES_ARRAY':
+			return {
+				...state,
+				movies: action.payload,
+			}
 		case 'GET_POPULAR_MOVIES':
 			return {
 				...state,
 				popularMovies: action.payload,
+			}
+		case 'GET_NOW_PLAYING_MOVIES':
+			return {
+				...state,
+				nowPlayingMovies: action.payload,
+			}
+		case 'GET_UPCOMING_MOVIES':
+			return {
+				...state,
+				upcomingMovies: action.payload,
+			}
+		case 'GET_TOP_RATED_MOVIES':
+			return {
+				...state,
+				topRatedMovies: action.payload,
 			}
 		case 'GET_FAVORITE_MOVIES':
 			return {

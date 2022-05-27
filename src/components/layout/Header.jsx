@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useState, useContext } from 'react'
 import MoviesContext from '../../context/MoviesContext'
 import { searchMovies } from '../../context/MoviesActions'
+import useEmptyMoviesArray from '../../hooks/useEmptyMoviesArray'
 
 function Header() {
+	const [emptyMoviesArray] = useEmptyMoviesArray()
 	const [movieName, setMovieName] = useState('')
 
 	const { dispatch } = useContext(MoviesContext)
@@ -25,17 +27,20 @@ function Header() {
 			<nav className='header__nav'>
 				<ul>
 					<li>
-						<Link to='/'>Films populaires</Link>
-					</li>
-					<li>
-						<Link to='/favorite'>
+						<NavLink
+							className={({ isActive }) => (isActive ? 'header-active' : '')}
+							onClick={emptyMoviesArray}
+							to='/favorite'>
 							Films à voir <i className='fa-regular fa-heart'></i>
-						</Link>
+						</NavLink>
 					</li>
 					<li>
-						<Link to='/watched'>
+						<NavLink
+							className={({ isActive }) => (isActive ? 'header-active' : '')}
+							onClick={emptyMoviesArray}
+							to='/watched'>
 							Films vus <i className='fa-solid fa-plus'></i>
-						</Link>
+						</NavLink>
 					</li>
 				</ul>
 			</nav>
