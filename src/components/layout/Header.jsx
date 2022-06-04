@@ -1,14 +1,18 @@
-import { NavLink } from 'react-router-dom'
 import { useState, useContext } from 'react'
+import { NavLink } from 'react-router-dom'
 import MoviesContext from '../../context/MoviesContext'
 import { searchMovies } from '../../context/MoviesActions'
-import useEmptyMoviesArray from '../../hooks/useEmptyMoviesArray'
+// import { getMoviesFromDB } from '../../context/MoviesActions'
 
 function Header() {
-	const [emptyMoviesArray] = useEmptyMoviesArray()
 	const [movieName, setMovieName] = useState('')
 
 	const { dispatch } = useContext(MoviesContext)
+
+	// const addMoviesToReducer = async category => {
+	// 	const movies = await getMoviesFromDB(category)
+	// 	dispatch({ type: 'GET_MOVIES', payload: movies })
+	// }
 
 	const handleChange = e => {
 		setMovieName(e.target.value)
@@ -29,7 +33,7 @@ function Header() {
 					<li>
 						<NavLink
 							className={({ isActive }) => (isActive ? 'header-active' : '')}
-							onClick={emptyMoviesArray}
+							// onClick={() => addMoviesToReducer('favorite')}
 							to='/favorite'>
 							Films à voir <i className='fa-regular fa-heart'></i>
 						</NavLink>
@@ -37,7 +41,7 @@ function Header() {
 					<li>
 						<NavLink
 							className={({ isActive }) => (isActive ? 'header-active' : '')}
-							onClick={emptyMoviesArray}
+							// onClick={() => addMoviesToReducer('watched')}
 							to='/watched'>
 							Films vus <i className='fa-solid fa-plus'></i>
 						</NavLink>

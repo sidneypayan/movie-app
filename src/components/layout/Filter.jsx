@@ -1,15 +1,22 @@
+// import { useContext } from 'react'
+// import MoviesContext from '../../context/MoviesContext'
+// import { getMovies } from '../../context/MoviesActions'
 import { NavLink } from 'react-router-dom'
-import useEmptyMoviesArray from '../../hooks/useEmptyMoviesArray'
 
 function Filter() {
-	const [emptyMoviesArray] = useEmptyMoviesArray()
+	// const { dispatch } = useContext(MoviesContext)
+
+	// const addMoviesToReducer = async category => {
+	// 	const movies = await getMovies(category)
+	// 	dispatch({ type: 'GET_MOVIES', payload: movies })
+	// }
 
 	return (
 		<nav className='filter__nav'>
 			<ul>
 				<li>
 					<NavLink
-						onClick={emptyMoviesArray}
+						// onClick={() => addMoviesToReducer('popular')}
 						to='/popular'
 						className={({ isActive }) => (isActive ? 'active' : '')}>
 						Films populaires
@@ -17,7 +24,7 @@ function Filter() {
 				</li>
 				<li>
 					<NavLink
-						onClick={emptyMoviesArray}
+						// onClick={() => addMoviesToReducer('now_playing')}
 						to='/now-playing'
 						className={({ isActive }) => (isActive ? 'active' : '')}>
 						Films à l'affiche
@@ -25,7 +32,7 @@ function Filter() {
 				</li>
 				<li>
 					<NavLink
-						onClick={emptyMoviesArray}
+						// onClick={() => addMoviesToReducer('upcoming')}
 						to='/upcoming'
 						className={({ isActive }) => (isActive ? 'active' : '')}>
 						Films à venir
@@ -33,7 +40,7 @@ function Filter() {
 				</li>
 				<li>
 					<NavLink
-						onClick={emptyMoviesArray}
+						// onClick={() => addMoviesToReducer('top_rated')}
 						to='/top-rated'
 						className={({ isActive }) => (isActive ? 'active' : '')}>
 						Films les mieux notés

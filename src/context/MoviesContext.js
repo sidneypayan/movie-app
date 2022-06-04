@@ -6,15 +6,13 @@ const MoviesContext = createContext()
 export const MoviesProvider = ({ children }) => {
 	const initialState = {
 		movies: [],
-		popularMovies: [],
-		nowPlayingMovies: [],
-		upcomingMovies: [],
-		topRatedMovies: [],
 		favoriteMovies: [],
 		watchedMovies: [],
 	}
 
 	const [state, dispatch] = useReducer(MoviesReducer, initialState)
+
+	// console.log(state.favoriteMovies, state.watchedMovies)
 
 	return (
 		<MoviesContext.Provider

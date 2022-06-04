@@ -1,61 +1,56 @@
 import { useContext, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import { getMovies, getMoviesFromDB } from '../../context/MoviesActions'
 import MoviesContext from '../../context/MoviesContext'
 import MovieResults from '../movies/MovieResults'
-import { getPopularMovies } from '../../context/MoviesActions'
-import { getNowPlayingMovies } from '../../context/MoviesActions'
-import { getUpcommingMovies } from '../../context/MoviesActions'
-import { getTopRatedMovies } from '../../context/MoviesActions'
-import { getMoviesFromDB } from '../../context/MoviesActions'
 
 function Home() {
 	const { dispatch } = useContext(MoviesContext)
+	const location = useLocation()
 
 	useEffect(() => {
-		const getPopularMoviesData = async () => {
-			const moviesData = await getPopularMovies()
-			dispatch({ type: 'GET_POPULAR_MOVIES', payload: moviesData })
+		const getMoviesData = async category => {
+			const moviesData = await getMovies(category)
+			dispatch({ type: 'GET_MOVIES', payload: moviesData })
 		}
-		getPopularMoviesData()
+
+		switch (location.pathname) {
+			case '/':
+			case '/popular':
+				getMoviesData('popular')
+				break
+			case '/now-playing':
+				getMoviesData('now_playing')
+				break
+			case '/upcoming':
+				getMoviesData('upcoming')
+				break
+			case '/top-rated':
+				getMoviesData('top_rated')
+				break
+			case '/favorite':
+				break
+			case '/watched':
+				break
+			default:
+				console.log("Cette page n'existe pas")
+		}
+	}, [dispatch, location.pathname])
+
+	useEffect(() => {
+		const getFavoriteMoviesFromDB = async () => {
+			const moviesData = await getMoviesFromDB('favorite')
+			dispatch({ type: 'GET_FAVORITE_MOVIES', payload: moviesData })
+		}
+		getFavoriteMoviesFromDB()
 	}, [dispatch])
 
 	useEffect(() => {
-		const getNowPlayingMoviesData = async () => {
-			const moviesData = await getNowPlayingMovies()
-			dispatch({ type: 'GET_NOW_PLAYING_MOVIES', payload: moviesData })
+		const getWatchedMoviesFromDB = async () => {
+			const moviesData = await getMoviesFromDB('watched')
+			dispatch({ type: 'GET_WATCHED_MOVIES', payload: moviesData })
 		}
-		getNowPlayingMoviesData()
-	}, [dispatch])
-
-	useEffect(() => {
-		const getUpcommingMoviesData = async () => {
-			const moviesData = await getUpcommingMovies()
-			dispatch({ type: 'GET_UPCOMING_MOVIES', payload: moviesData })
-		}
-		getUpcommingMoviesData()
-	}, [dispatch])
-
-	useEffect(() => {
-		const getTopRatedMoviesData = async () => {
-			const moviesData = await getTopRatedMovies()
-			dispatch({ type: 'GET_TOP_RATED_MOVIES', payload: moviesData })
-		}
-		getTopRatedMoviesData()
-	}, [dispatch])
-
-	useEffect(() => {
-		const getFavoriteMovies = async () => {
-			const favoriteMovies = await getMoviesFromDB('favorite')
-			dispatch({ type: 'GET_FAVORITE_MOVIES', payload: favoriteMovies })
-		}
-		getFavoriteMovies()
-	}, [dispatch])
-
-	useEffect(() => {
-		const getWatchedMovies = async () => {
-			const watchedMovies = await getMoviesFromDB('watched')
-			dispatch({ type: 'GET_WATCHED_MOVIES', payload: watchedMovies })
-		}
-		getWatchedMovies()
+		getWatchedMoviesFromDB()
 	}, [dispatch])
 
 	return (
