@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { createContext, useReducer } from 'react'
 import MoviesReducer from './MoviesReducer'
 
@@ -6,13 +7,19 @@ const MoviesContext = createContext()
 export const MoviesProvider = ({ children }) => {
 	const initialState = {
 		movies: [],
-		favoriteMovies: [],
-		watchedMovies: [],
+		favoriteMovies: JSON.parse(localStorage.getItem('favorite')) || [],
+		watchedMovies: JSON.parse(localStorage.getItem('watched')) || [],
 	}
 
 	const [state, dispatch] = useReducer(MoviesReducer, initialState)
 
-	// console.log(state.favoriteMovies, state.watchedMovies)
+	useEffect(() => {
+		localStorage.setItem('favorite', JSON.stringify(state.favoriteMovies))
+	}, [state.favoriteMovies])
+
+	useEffect(() => {
+		localStorage.setItem('watched', JSON.stringify(state.watchedMovies))
+	}, [state.watchedMovies])
 
 	return (
 		<MoviesContext.Provider

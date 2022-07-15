@@ -15,26 +15,15 @@ export const getMovies = async category => {
 }
 
 export const getMoviesFromDB = async category => {
-	const res = await fetch(`/${category}`)
-	const data = await res.json()
-	return data
+	localStorage.getItem(category)
 }
 
-export const addMovieToDB = async (movie, category) => {
-	const res = await fetch(`/${category}`, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(movie),
-	})
+// export const addMovieToDB = async (movie, category) => {
+// 	localStorage.setItem(category, movie)
+// }
 
-	const data = await res.json()
-	return data
-}
-
-export const deleteMovieFromDB = async (id, category) => {
-	await fetch(`/${category}/${id}`, {
-		method: 'DELETE',
-	})
-}
+// export const deleteMovieFromDB = async (id, category) => {
+// 	await fetch(`/${category}/${id}`, {
+// 		method: 'DELETE',
+// 	})
+// }

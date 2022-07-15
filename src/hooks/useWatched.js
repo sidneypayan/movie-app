@@ -1,24 +1,19 @@
 import { useContext } from 'react'
 import MoviesContext from '../context/MoviesContext'
 
-import { addMovieToDB, deleteMovieFromDB } from '../context/MoviesActions'
-
 function useWatched() {
 	const { favoriteMovies, watchedMovies, dispatch } = useContext(MoviesContext)
 
-	const addMovieToWatched = async movie => {
+	const addMovieToWatched = movie => {
 		// Lorsque user ajoute film à liste watched, check si film présent dans liste favoris et le supprime si true
 		if (favoriteMovies.some(item => item.id === movie.id)) {
-			await deleteMovieFromDB(movie.id, 'favorite')
 			dispatch({ type: 'DELETE_MOVIE_FROM_FAVORITE', payload: movie.id })
 		}
 
-		const movieData = await addMovieToDB(movie, 'watched')
-		dispatch({ type: 'ADD_MOVIE_TO_WATCHED', payload: movieData })
+		dispatch({ type: 'ADD_MOVIE_TO_WATCHED', payload: movie })
 	}
 
-	const deleteMovieFromWatched = async id => {
-		await deleteMovieFromDB(id, 'watched')
+	const deleteMovieFromWatched = id => {
 		dispatch({ type: 'DELETE_MOVIE_FROM_WATCHED', payload: id })
 	}
 

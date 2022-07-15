@@ -1,18 +1,15 @@
 import { useContext } from 'react'
 import MoviesContext from '../context/MoviesContext'
 
-import { addMovieToDB, deleteMovieFromDB } from '../context/MoviesActions'
-
 function useFavorite() {
 	const { watchedMovies, favoriteMovies, dispatch } = useContext(MoviesContext)
 
-	const addMovieToFavorite = async movie => {
-		const movieData = await addMovieToDB(movie, 'favorite')
-		dispatch({ type: 'ADD_MOVIE_TO_FAVORITE', payload: movieData })
+	const addMovieToFavorite = movie => {
+		// const movieData = await addMovieToDB(movie, 'favorite')
+		dispatch({ type: 'ADD_MOVIE_TO_FAVORITE', payload: movie })
 	}
 
-	const deleteMovieFromFavorite = async id => {
-		await deleteMovieFromDB(id, 'favorite')
+	const deleteMovieFromFavorite = id => {
 		dispatch({ type: 'DELETE_MOVIE_FROM_FAVORITE', payload: id })
 	}
 
