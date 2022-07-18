@@ -37,22 +37,6 @@ function Home() {
 		}
 	}, [dispatch, location.pathname])
 
-	// useEffect(() => {
-	// 	const getFavoriteMoviesFromDB = async () => {
-	// 		const moviesData = await getMoviesFromDB('favorite')
-	// 		dispatch({ type: 'GET_FAVORITE_MOVIES', payload: moviesData })
-	// 	}
-	// 	getFavoriteMoviesFromDB()
-	// }, [dispatch])
-
-	// useEffect(() => {
-	// 	const getWatchedMoviesFromDB = async () => {
-	// 		const moviesData = await getMoviesFromDB('watched')
-	// 		dispatch({ type: 'GET_WATCHED_MOVIES', payload: moviesData })
-	// 	}
-	// 	getWatchedMoviesFromDB()
-	// }, [dispatch])
-
 	return (
 		<>
 			<MovieResults />
