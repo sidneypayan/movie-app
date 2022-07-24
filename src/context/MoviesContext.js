@@ -9,6 +9,7 @@ export const MoviesProvider = ({ children }) => {
 		movies: [],
 		favoriteMovies: JSON.parse(localStorage.getItem('favorite')) || [],
 		watchedMovies: JSON.parse(localStorage.getItem('watched')) || [],
+		loading: false,
 	}
 
 	const [state, dispatch] = useReducer(MoviesReducer, initialState)

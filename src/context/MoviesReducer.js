@@ -4,6 +4,7 @@ const moviesReducer = (state, action) => {
 			return {
 				...state,
 				movies: action.payload,
+				loading: false,
 			}
 		case 'GET_FAVORITE_MOVIES':
 			return {
