@@ -9,16 +9,19 @@ const initialState = {
 	error: false,
 	category: 'popular',
 	movies: [],
+	nbPages: 0,
+	currentPage: 1,
 }
 
 export const MoviesProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState)
 
-	const fetchMovies = async url => {
+	const fetchMovies = async (url, page) => {
 		dispatch({ type: 'GET_MOVIES_BEGIN' })
 		try {
-			const response = await fetch(url)
+			const response = await fetch(`${url}${page}`)
 			const data = await response.json()
+			dispatch({ type: 'GET_NUMBER_OF_PAGES', payload: data.total_pages })
 			dispatch({ type: 'GET_MOVIES_SUCCESS', payload: data.results })
 		} catch (error) {
 			dispatch({ type: 'GET_MOVIES_ERROR' })
@@ -28,11 +31,11 @@ export const MoviesProvider = ({ children }) => {
 	const fetchSingleMovie = async url => {}
 
 	useEffect(() => {
-		fetchMovies(url)
-	}, [])
+		fetchMovies(url, state.currentPage)
+	}, [state.currentPage])
 
 	return (
-		<MoviesContext.Provider value={{ ...state }}>
+		<MoviesContext.Provider value={{ ...state, dispatch }}>
 			{children}
 		</MoviesContext.Provider>
 	)

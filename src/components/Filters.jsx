@@ -6,7 +6,7 @@ const Filters = () => {
 	const { category } = useParams()
 
 	useEffect(() => {
-		console.log(category)
+		// console.log(category)
 	}, [category])
 
 	return (

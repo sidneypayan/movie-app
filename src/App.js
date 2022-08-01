@@ -1,12 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { HomePage, ErrorPage, SingleMoviePage } from './pages'
-import { Navbar, Filters } from './components'
+import { Navbar } from './components'
 
 function App() {
 	return (
 		<Router>
 			<Navbar />
-			<Filters />
 			<Routes>
 				<Route path='/' element={<HomePage />} />
 				<Route path=':category' element={<HomePage />} />

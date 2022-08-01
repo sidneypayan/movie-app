@@ -1,5 +1,5 @@
 import { useMoviesContext } from '../context/movies_context'
-import { Loading, Error, Movies } from '../components'
+import { Loading, Error, Movies, Filters, Pagination } from '../components'
 
 const Home = () => {
 	const { loading, error } = useMoviesContext()
@@ -14,7 +14,9 @@ const Home = () => {
 
 	return (
 		<>
+			<Filters />
 			<Movies />
+			<Pagination />
 		</>
 	)
 }
