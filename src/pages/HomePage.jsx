@@ -1,11 +1,11 @@
 import { useMoviesContext } from '../context/movies_context'
-import { Loading, Error, Movies, Filters, Pagination } from '../components'
+import { Error, Movies, Filters, Pagination, Loader } from '../components'
 
 const Home = () => {
 	const { loading, error } = useMoviesContext()
 
 	if (loading) {
-		return <Loading />
+		return <Loader />
 	}
 
 	if (error) {

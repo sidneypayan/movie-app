@@ -22,7 +22,3 @@ img {
 .container {
 	max-width: 1100px;
 }
-
-.active {
-	border-bottom: 2px solid #7378c5;
-}

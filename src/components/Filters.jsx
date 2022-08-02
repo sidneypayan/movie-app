@@ -1,32 +1,30 @@
-import { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useMoviesContext } from '../context/movies_context'
+import { NavLink, useParams } from 'react-router-dom'
 import styled from 'styled-components'
+import { useEffect } from 'react'
 
 const Filters = () => {
-	const { category } = useParams()
+	const { dispatch } = useMoviesContext()
+	const { category = 'popular' } = useParams()
 
 	useEffect(() => {
-		// console.log(category)
-	}, [category])
+		dispatch({ type: 'GET_CATEGORY', payload: category })
+	}, [dispatch, category])
 
 	return (
 		<FilterContainer>
 			<ul>
 				<li>
-					<Link
-						to='/popular'
-						className={({ isActive }) => (isActive ? 'active' : '')}>
-						Films populaires
-					</Link>
+					<NavLink to='/popular'>Films populaires</NavLink>
 				</li>
 				<li>
-					<Link to='/now-playing'>Films à l'affiche</Link>
+					<NavLink to='/now_playing'>Films à l'affiche</NavLink>
 				</li>
 				<li>
-					<Link to='/upcoming'>Films à venir</Link>
+					<NavLink to='/upcoming'>Films à venir</NavLink>
 				</li>
 				<li>
-					<Link to='/top-rated'>Films les mieux notés</Link>
+					<NavLink to='/top_rated'>Films les mieux notés</NavLink>
 				</li>
 			</ul>
 		</FilterContainer>
@@ -54,6 +52,10 @@ const FilterContainer = styled.nav`
 			color: #7378c5;
 			text-decoration: none;
 		}
+	}
+
+	.active {
+		border-bottom: 2px solid #7378c5;
 	}
 `
 

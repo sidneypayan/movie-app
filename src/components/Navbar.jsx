@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { FaRegHeart } from 'react-icons/fa'
 import Search from './Search'
@@ -8,12 +8,12 @@ const Navbar = () => {
 		<NavContainer>
 			<ul>
 				<li>
-					<Link to='/favorite'>
+					<NavLink to='/favorite'>
 						Films à voir <FaRegHeart />
-					</Link>
+					</NavLink>
 				</li>
 				<li>
-					<Link to='/watched'>Films vus +</Link>
+					<NavLink to='/watched'>Films vus +</NavLink>
 				</li>
 			</ul>
 			<Search />

@@ -1,10 +1,25 @@
+import { useState } from 'react'
 import styled from 'styled-components'
+import { useMoviesContext } from '../context/movies_context'
 
 const Search = () => {
+	const { searchMovie } = useMoviesContext()
+	const [movieName, setMovieName] = useState()
+
+	const handleChange = e => {
+		setMovieName(e.target.value)
+		searchMovie(e.target.value)
+	}
+
 	return (
 		<SearchContainer>
 			<form>
-				<input type='text' placeholder='chercher un film' />
+				<input
+					onChange={handleChange}
+					value={movieName}
+					type='text'
+					placeholder='chercher un film'
+				/>
 			</form>
 		</SearchContainer>
 	)

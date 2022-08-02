@@ -85,7 +85,6 @@ const Pagination = () => {
 			<button type='button' onClick={nextPage}>
 				<FaLongArrowAltRight />
 			</button>
-			{currentPage}
 		</PaginationContainer>
 	)
 }
