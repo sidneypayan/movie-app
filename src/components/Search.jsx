@@ -1,22 +1,24 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import { useMoviesContext } from '../context/movies_context'
 
 const Search = () => {
-	const { searchMovie } = useMoviesContext()
-	const [movieName, setMovieName] = useState()
+	const { dispatch, query, setQuery } = useMoviesContext()
 
-	const handleChange = e => {
-		setMovieName(e.target.value)
-		searchMovie(e.target.value)
-	}
+	useEffect(() => {
+		if (query) {
+			dispatch({ type: 'SEARCHING_ON', payload: true })
+		} else {
+			dispatch({ type: 'SEARCHING_OFF', payload: false })
+		}
+	}, [dispatch, query])
 
 	return (
 		<SearchContainer>
-			<form>
+			<form onSubmit={e => e.preventDefault()}>
 				<input
-					onChange={handleChange}
-					value={movieName}
+					onChange={e => setQuery(e.target.value)}
+					value={query}
 					type='text'
 					placeholder='chercher un film'
 				/>
