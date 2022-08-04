@@ -1,16 +1,7 @@
-import { useMoviesContext } from '../context/movies_context'
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { useEffect } from 'react'
 
 const Filters = () => {
-	const { dispatch } = useMoviesContext()
-	const { category = 'popular' } = useParams()
-
-	useEffect(() => {
-		dispatch({ type: 'GET_CATEGORY', payload: category })
-	}, [dispatch, category])
-
 	return (
 		<FilterContainer>
 			<ul>

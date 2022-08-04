@@ -1,17 +1,8 @@
-import { useEffect } from 'react'
 import styled from 'styled-components'
 import { useMoviesContext } from '../context/movies_context'
 
 const Search = () => {
-	const { dispatch, query, setQuery } = useMoviesContext()
-
-	useEffect(() => {
-		if (query) {
-			dispatch({ type: 'SEARCHING_ON', payload: true })
-		} else {
-			dispatch({ type: 'SEARCHING_OFF', payload: false })
-		}
-	}, [dispatch, query])
+	const { query, setQuery } = useMoviesContext()
 
 	return (
 		<SearchContainer>

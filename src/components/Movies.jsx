@@ -8,7 +8,7 @@ const Movies = () => {
 	return (
 		<MoviesContainer>
 			{movies.map(movie => (
-				<MovieCard key={movie.id} {...movie} />
+				<MovieCard key={movie.id} movie={movie} />
 			))}
 		</MoviesContainer>
 	)

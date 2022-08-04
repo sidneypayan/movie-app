@@ -1,31 +1,61 @@
 import styled from 'styled-components'
-import { FaRegHeart, FaPlus } from 'react-icons/fa'
+import { FaRegHeart, FaHeart, FaPlus, FaMinus } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { useMoviesContext } from '../context/movies_context'
 
-const MovieCard = ({
-	id,
-	original_title: title,
-	poster_path,
-	vote_average: vote,
-	release_date: date,
-}) => {
+const MovieCard = ({ movie }) => {
+	const { addMovieToDB, removeMovieFromDB, favoriteMovies, watchedMovies } =
+		useMoviesContext()
+
+	const { id, original_title, poster_path, vote_average, release_date } = movie
+
+	const isFavorite = id => {
+		return favoriteMovies.some(movie => movie.id === id)
+	}
+
+	const isWatched = id => {
+		return watchedMovies.some(movie => movie.id === id)
+	}
+
 	const image = `https://image.tmdb.org/t/p/w1280${poster_path}`
 	return (
 		<MovieContainer>
 			<Link to={`movies/${id}`}>
-				<img src={image} alt={title} />
+				<img src={image} alt={original_title} />
 			</Link>
-			<span className='movie-favorite'>
-				<FaRegHeart className='icon-favorite' />
-			</span>
-			<span className='movie-watched'>
-				<FaPlus className='icon-watched' />
-			</span>
+
+			{isFavorite(id) ? (
+				<span
+					className='movie-favorite'
+					onClick={() => removeMovieFromDB('favorite', id)}>
+					<FaHeart className='icon-favorite-active' />
+				</span>
+			) : (
+				<span
+					className='movie-favorite'
+					onClick={() => addMovieToDB('favorite', movie)}>
+					<FaRegHeart className='icon-favorite' />
+				</span>
+			)}
+			{isWatched(id) ? (
+				<span
+					className='movie-watched'
+					onClick={() => removeMovieFromDB('watched', id)}>
+					<FaMinus className='icon-watched' />
+				</span>
+			) : (
+				<span
+					className='movie-watched'
+					onClick={() => addMovieToDB('watched', movie)}>
+					<FaPlus className='icon-watched' />
+				</span>
+			)}
+
 			<div className='movie-info'>
-				<h3>{title}</h3>
+				<h3>{original_title}</h3>
 				<div className='movie-spans'>
-					<span>{vote}</span>
-					<span>{date}</span>
+					<span>{vote_average}</span>
+					<span>{release_date}</span>
 				</div>
 			</div>
 		</MovieContainer>
@@ -54,8 +84,7 @@ const MovieContainer = styled.div`
 		right: 1rem;
 		color: #fff;
 		font-size: 1.5rem;
-		background-color: #373b69;
-		opacity: 0.7;
+		background-color: rgba(55, 59, 105, 0.7);
 		border-radius: 3px;
 		width: 30px;
 		height: 30px;
@@ -67,6 +96,11 @@ const MovieContainer = styled.div`
 
 	.icon-favorite {
 		font-size: 1.2rem;
+	}
+
+	.icon-favorite-active {
+		font-size: 1.2rem;
+		color: red;
 	}
 
 	.movie-favorite {
