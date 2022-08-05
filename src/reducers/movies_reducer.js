@@ -16,7 +16,12 @@ const movies_reducer = (state, action) => {
 	}
 
 	if (action.type === 'GET_MOVIES_SUCCESS') {
-		return { ...state, loading: false, movies: action.payload }
+		return {
+			...state,
+			loading: false,
+			movies: action.payload,
+			error: false,
+		}
 	}
 
 	if (action.type === 'GET_MOVIES_ERROR') {
@@ -53,6 +58,9 @@ const movies_reducer = (state, action) => {
 				watchedMovies: state.watchedMovies.filter(movie => movie.id !== id),
 			}
 		}
+	}
+	if (action.type === 'GET_MOVIE_ID') {
+		return { ...state, movie_id: action.payload }
 	}
 }
 

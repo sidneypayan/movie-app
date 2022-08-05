@@ -20,7 +20,7 @@ const MovieCard = ({ movie }) => {
 	const image = `https://image.tmdb.org/t/p/w1280${poster_path}`
 	return (
 		<MovieContainer>
-			<Link to={`movies/${id}`}>
+			<Link to={`/movies/${id}`}>
 				<img src={image} alt={original_title} />
 			</Link>
 

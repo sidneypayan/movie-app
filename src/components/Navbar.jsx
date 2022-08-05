@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { FaRegHeart } from 'react-icons/fa'
+import { FaRegHeart, FaPlus } from 'react-icons/fa'
 import Search from './Search'
 
 const Navbar = () => {
@@ -13,7 +13,9 @@ const Navbar = () => {
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to='/watched'>Films vus +</NavLink>
+					<NavLink to='/watched'>
+						Films vus <FaPlus />
+					</NavLink>
 				</li>
 			</ul>
 			<Search />
@@ -43,15 +45,17 @@ const NavContainer = styled.nav`
 
 		&:hover {
 			background-color: #22254b;
+			a {
+				color: #fff;
+			}
 		}
 
 		a {
 			color: #7378c5;
 			text-decoration: none;
-
-			&:hover {
-				color: #fff;
-			}
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
 		}
 	}
 `

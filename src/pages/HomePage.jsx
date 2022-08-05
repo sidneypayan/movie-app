@@ -5,16 +5,13 @@ import { Error, Movies, Filters, Pagination, Loader } from '../components'
 
 const Home = () => {
 	const { loading, error, dispatch } = useMoviesContext()
-	const { category } = useParams()
-
-	console.log(category)
+	let { category } = useParams()
+	if (!category) {
+		category = 'popular'
+	}
 
 	useEffect(() => {
-		// if (category) {
 		dispatch({ type: 'GET_CATEGORY', payload: category })
-		// } else {
-		// 	dispatch({ type: 'GET_CATEGORY', payload: 'popular' })
-		// }
 	}, [dispatch, category])
 
 	if (loading) {
@@ -29,7 +26,7 @@ const Home = () => {
 		<>
 			<Filters />
 			<Movies />
-			<Pagination />
+			{category !== 'favorite' && category !== 'watched' && <Pagination />}
 		</>
 	)
 }

@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useReducer } from 'react'
 
 import reducer from '../reducers/movies_reducer'
-import {
-	movies_url as url,
-	search_movie_url as search_url,
-} from '../utils/constants'
+// import {
+// 	movies_url as url,
+// 	search_movie_url as search_url,
+// } from '../utils/constants'
+
+const API_ENDPOINT = `https://api.themoviedb.org/3/`
 
 const MoviesContext = React.createContext()
 
@@ -18,50 +20,66 @@ const initialState = {
 	nbPages: 0,
 	currentPage: 1,
 	query: '',
+	movie_id: '',
 }
 
 export const MoviesProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState)
+	console.log(state.category)
 
 	const setQuery = query => {
 		dispatch({ type: 'SET_QUERY', payload: query })
 	}
 
-	const fetchMovies = async (url, page) => {
+	const fetchMovies = async url => {
 		dispatch({ type: 'GET_MOVIES_BEGIN' })
 		try {
-			const response = await fetch(`${url}${page}`)
-			const data = await response.json()
+			const response = await fetch(url)
+			let data = await response.json()
+
 			let pages = data.total_pages
 
 			if (pages > 500) {
 				pages = 500
 			}
 
-			dispatch({ type: 'GET_NUMBER_OF_PAGES', payload: pages })
-			dispatch({ type: 'GET_MOVIES_SUCCESS', payload: data.results })
-		} catch (error) {
-			dispatch({ type: 'GET_MOVIES_ERROR' })
-		}
-	}
-
-	const searchMovie = async (url, query, page) => {
-		dispatch({ type: 'GET_MOVIES_BEGIN' })
-		try {
-			const response = await fetch(`${url}${query}&page=${page}`)
-			const data = await response.json()
-			let pages = data.total_pages
-
-			if (pages > 500) {
-				pages = 500
+			if (!state.movie_id) {
+				data = data.results
 			}
 
 			dispatch({ type: 'GET_NUMBER_OF_PAGES', payload: pages })
-			dispatch({ type: 'GET_MOVIES_SUCCESS', payload: data.results })
+			dispatch({ type: 'GET_MOVIES_SUCCESS', payload: data })
 		} catch (error) {
 			dispatch({ type: 'GET_MOVIES_ERROR' })
 		}
 	}
+
+	useEffect(() => {
+		if (state.movie_id) {
+			fetchMovies(
+				`${API_ENDPOINT}movie/${state.movie_id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`
+			)
+			return
+		}
+
+		if (state.category === 'favorite' || state.category === 'watched') {
+			getMoviesFromDB(state.category)
+			return
+		} else if (state.category) {
+			fetchMovies(
+				`${API_ENDPOINT}movie/${state.category}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&page=${state.currentPage}`
+			)
+		}
+
+		if (state.query) {
+			fetchMovies(
+				`${API_ENDPOINT}search/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&query=${state.query}&page=${state.currentPage}`
+			)
+			return
+		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [state.category, state.currentPage, state.query, state.movie_id])
 
 	const addMovieToDB = (category, movie) => {
 		if (
@@ -99,16 +117,14 @@ export const MoviesProvider = ({ children }) => {
 
 	const getMoviesFromDB = category => {
 		let newMovies
-		let pages
 		if (category === 'favorite') {
 			newMovies = state.favoriteMovies
 		}
 		if (category === 'watched') {
 			newMovies = state.watchedMovies
 		}
-		console.log('get movies from DB')
+
 		dispatch({ type: 'GET_MOVIES_SUCCESS', payload: newMovies })
-		dispatch({ type: 'GET_NUMBER_OF_PAGES', payload: pages })
 	}
 
 	useEffect(() => {
@@ -126,21 +142,6 @@ export const MoviesProvider = ({ children }) => {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [state.watchedMovies, state.category])
-
-	useEffect(() => {
-		if (state.category === 'favorite' || state.category === 'watched') {
-			getMoviesFromDB(state.category)
-		} else if (state.query) {
-			searchMovie(search_url, state.query, state.currentPage)
-		} else if (state.category) {
-			fetchMovies(
-				`${url}${state.category}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&page=`,
-				state.currentPage
-			)
-		}
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [state.category, state.currentPage, state.query])
 
 	return (
 		<MoviesContext.Provider

@@ -45,7 +45,6 @@ const Pagination = () => {
 		setMinSlice(pageNumbers - 4)
 
 		dispatch({ type: 'CHANGE_PAGE', payload: pageNumber })
-		// console.log(pageNumber)
 	}
 
 	return (
