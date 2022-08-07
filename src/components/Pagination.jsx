@@ -14,8 +14,6 @@ const Pagination = () => {
 	})
 	const [maxSlice, setMaxSlice] = useState(currentPage + 1)
 
-	console.log(minSlice, maxSlice)
-
 	for (let i = 2; i < nbPages; i++) {
 		pageNumbers.push(i)
 	}

@@ -24,8 +24,6 @@ const initialState = {
 export const MoviesProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState)
 
-	console.log(state.currentPage)
-
 	const setQuery = query => {
 		dispatch({ type: 'SET_QUERY', payload: query })
 	}
@@ -114,13 +112,13 @@ export const MoviesProvider = ({ children }) => {
 			return
 		} else if (state.category) {
 			fetchMovies(
-				`${API_ENDPOINT}movie/${state.category}?api_key=REACT_APP_MOVIE_API_KEY&page=${state.currentPage}`
+				`${API_ENDPOINT}movie/${state.category}?api_key=9d64e2a5fae568c0beed810bbf76d497&page=${state.currentPage}`
 			)
 		}
 
 		if (state.query) {
 			fetchMovies(
-				`${API_ENDPOINT}search/movie?api_key=REACT_APP_MOVIE_API_KEY&query=${state.query}&page=${state.currentPage}`
+				`${API_ENDPOINT}search/movie?api_key=9d64e2a5fae568c0beed810bbf76d497&query=${state.query}&page=${state.currentPage}`
 			)
 			dispatch({ type: 'GET_CATEGORY', payload: '' })
 			return
