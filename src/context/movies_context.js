@@ -23,7 +23,6 @@ const initialState = {
 
 export const MoviesProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState)
-	console.log(state.movies)
 
 	const setQuery = query => {
 		dispatch({ type: 'SET_QUERY', payload: query })
