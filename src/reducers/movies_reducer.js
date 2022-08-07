@@ -12,20 +12,33 @@ const movies_reducer = (state, action) => {
 	}
 
 	if (action.type === 'GET_MOVIES_BEGIN') {
-		return { ...state, loading: true }
+		return { ...state, movies_loading: true }
 	}
 
 	if (action.type === 'GET_MOVIES_SUCCESS') {
 		return {
 			...state,
-			loading: false,
+			movies_loading: false,
 			movies: action.payload,
 			error: false,
 		}
 	}
 
 	if (action.type === 'GET_MOVIES_ERROR') {
-		return { ...state, loading: false, error: true }
+		return { ...state, movies_loading: false, movies_error: true }
+	}
+
+	if (action.type === 'GET_SINGLE_MOVIE_BEGIN') {
+		return { ...state, single_movie_loading: true }
+	}
+
+	if (action.type === 'GET_SINGLE_MOVIE_SUCCESS') {
+		return {
+			...state,
+			single_movie_loading: false,
+			single_movie_error: false,
+			movie: action.payload,
+		}
 	}
 
 	if (action.type === 'SET_QUERY') {
@@ -58,9 +71,6 @@ const movies_reducer = (state, action) => {
 				watchedMovies: state.watchedMovies.filter(movie => movie.id !== id),
 			}
 		}
-	}
-	if (action.type === 'GET_MOVIE_ID') {
-		return { ...state, movie_id: action.payload }
 	}
 }
 

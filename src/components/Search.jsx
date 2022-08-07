@@ -27,6 +27,7 @@ const SearchContainer = styled.div`
 		font-size: 1rem;
 		padding: 0.5rem 1rem;
 		color: #fff;
+		width: 200px;
 
 		&::placeholder {
 			color: #7378c5;
@@ -35,6 +36,12 @@ const SearchContainer = styled.div`
 		&:focus {
 			outline: none;
 			background-color: #22254b;
+		}
+	}
+
+	@media (max-width: 767px) {
+		input {
+			padding: 0.25rem 0.5rem;
 		}
 	}
 `

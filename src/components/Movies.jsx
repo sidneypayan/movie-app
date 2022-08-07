@@ -6,17 +6,23 @@ const Movies = () => {
 	const { movies } = useMoviesContext()
 
 	return (
-		<MoviesContainer>
+		<Wrapper className='container'>
 			{movies.map(movie => (
 				<MovieCard key={movie.id} movie={movie} />
 			))}
-		</MoviesContainer>
+		</Wrapper>
 	)
 }
 
-const MoviesContainer = styled.div`
-	display: flex;
-	flex-wrap: wrap;
+const Wrapper = styled.div`
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	gap: 2rem;
+
+	@media (max-width: 767px) {
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+	}
 `
 
 export default Movies

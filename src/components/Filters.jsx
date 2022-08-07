@@ -1,9 +1,12 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Filters = () => {
+	// const [toggleFilters, setToggleFilters] = useState(false)
+
 	return (
-		<FilterContainer>
+		<Wrapper>
 			<ul>
 				<li>
 					<NavLink to='/popular'>Films populaires</NavLink>
@@ -15,17 +18,18 @@ const Filters = () => {
 					<NavLink to='/upcoming'>Films à venir</NavLink>
 				</li>
 				<li>
-					<NavLink to='/top_rated'>Films les mieux notés</NavLink>
+					<NavLink to='/top_rated'>Les mieux notés</NavLink>
 				</li>
 			</ul>
-		</FilterContainer>
+		</Wrapper>
 	)
 }
 
-const FilterContainer = styled.nav`
+const Wrapper = styled.nav`
 	ul {
 		display: flex;
 		margin: 2rem;
+		flex-wrap: wrap;
 	}
 
 	li {
@@ -47,6 +51,17 @@ const FilterContainer = styled.nav`
 
 	.active {
 		border-bottom: 2px solid #7378c5;
+	}
+
+	@media (max-width: 767px) {
+		ul {
+			justify-content: space-between;
+			margin: 2rem 0;
+		}
+
+		li {
+			width: 45%;
+		}
 	}
 `
 

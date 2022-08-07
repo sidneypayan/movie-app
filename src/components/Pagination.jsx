@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import styled from 'styled-components'
 import { useMoviesContext } from '../context/movies_context'
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from 'react-icons/fa'
@@ -13,6 +13,8 @@ const Pagination = () => {
 		return currentPage - 3
 	})
 	const [maxSlice, setMaxSlice] = useState(currentPage + 1)
+
+	console.log(minSlice, maxSlice)
 
 	for (let i = 2; i < nbPages; i++) {
 		pageNumbers.push(i)
@@ -46,6 +48,16 @@ const Pagination = () => {
 
 		dispatch({ type: 'CHANGE_PAGE', payload: pageNumber })
 	}
+
+	useEffect(() => {
+		setMinSlice(() => {
+			if (currentPage <= 2) {
+				return 0
+			}
+			return currentPage - 3
+		})
+		setMaxSlice(currentPage + 1)
+	}, [currentPage])
 
 	return (
 		<PaginationContainer>

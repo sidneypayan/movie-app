@@ -9,6 +9,8 @@ const MovieCard = ({ movie }) => {
 
 	const { id, original_title, poster_path, vote_average, release_date } = movie
 
+	const date = new Date(release_date).toLocaleDateString()
+
 	const isFavorite = id => {
 		return favoriteMovies.some(movie => movie.id === id)
 	}
@@ -55,7 +57,7 @@ const MovieCard = ({ movie }) => {
 				<h3>{original_title}</h3>
 				<div className='movie-spans'>
 					<span>{vote_average}</span>
-					<span>{release_date}</span>
+					<span>{date}</span>
 				</div>
 			</div>
 		</MovieContainer>
@@ -64,13 +66,21 @@ const MovieCard = ({ movie }) => {
 
 const MovieContainer = styled.div`
 	position: relative;
-	width: 175px;
-	margin: 1rem;
+	/* max-width: 20%; */
 	background-color: #373b69;
 	box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
-	position: relative;
-	overflow: hidden;
-	border-radius: 3px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	align-self: left;
+
+	@media (max-width: 767px) {
+		width: 100%;
+	}
+
+	img {
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+	}
 
 	.movie-favorite,
 	.movie-watched {
