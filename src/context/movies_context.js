@@ -124,16 +124,17 @@ export const MoviesProvider = ({ children }) => {
 				return
 			}
 		} else if (state.category) {
-			fetchMovies(
-				`${API_ENDPOINT}movie/${state.category}?api_key=9d64e2a5fae568c0beed810bbf76d497&page=${state.currentPage}`
-			)
-		}
-
-		if (state.query) {
-			fetchMovies(
-				`${API_ENDPOINT}search/movie?api_key=9d64e2a5fae568c0beed810bbf76d497&query=${state.query}&page=${state.currentPage}`
-			)
-			return
+			if (state.query) {
+				fetchMovies(
+					`${API_ENDPOINT}search/movie?api_key=9d64e2a5fae568c0beed810bbf76d497&query=${state.query}&page=${state.currentPage}`
+				)
+				return
+			} else {
+				fetchMovies(
+					`${API_ENDPOINT}movie/${state.category}?api_key=9d64e2a5fae568c0beed810bbf76d497&page=${state.currentPage}`
+				)
+				return
+			}
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps

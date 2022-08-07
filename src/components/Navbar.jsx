@@ -1,19 +1,26 @@
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+import { useMoviesContext } from '../context/movies_context'
 import { FaRegHeart, FaPlus } from 'react-icons/fa'
 import Search from './Search'
 
 const Navbar = () => {
+	const { dispatch } = useMoviesContext()
+
 	return (
 		<Wrapper>
 			<ul>
 				<li>
-					<NavLink to='/favorite'>
+					<NavLink
+						to='/favorite'
+						onClick={() => dispatch({ type: 'SET_QUERY', payload: '' })}>
 						<span className='nav-link'>Films à voir</span> <FaRegHeart />
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to='/watched'>
+					<NavLink
+						to='/watched'
+						onClick={() => dispatch({ type: 'SET_QUERY', payload: '' })}>
 						<span className='nav-link'>Films vus</span> <FaPlus />
 					</NavLink>
 				</li>
