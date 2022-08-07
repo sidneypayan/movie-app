@@ -3,6 +3,7 @@ import { useMoviesContext } from '../context/movies_context'
 import { useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { formatPrice } from '../utils/helpers'
+import noImg from '../assets/no-img.png'
 
 const SingleMoviePage = () => {
 	const {
@@ -27,17 +28,21 @@ const SingleMoviePage = () => {
 
 	useEffect(() => {
 		fetchSingleMovie(
-			`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}`
+			`https://api.themoviedb.org/3/movie/${id}?api_key=9d64e2a5fae568c0beed810bbf76d497`
 		)
 	}, [id])
 
 	return (
 		<Wrapper>
 			<div className='single-movie-container'>
-				<img
-					src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
-					alt={original_title}
-				/>
+				{poster_path ? (
+					<img
+						src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
+						alt={original_title}
+					/>
+				) : (
+					<img src={noImg} alt={original_title} />
+				)}
 				<div>
 					<p>{overview}</p>
 					<div className='movie-info-container'>

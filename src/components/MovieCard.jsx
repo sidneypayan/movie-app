@@ -23,7 +23,13 @@ const MovieCard = ({ movie }) => {
 	return (
 		<MovieContainer>
 			<Link to={`/movies/${id}`}>
-				<img src={image} alt={original_title} />
+				{poster_path ? (
+					<img src={image} alt={original_title} />
+				) : (
+					<div className='fake-img'>
+						<h2>{original_title}</h2>
+					</div>
+				)}
 			</Link>
 
 			{isFavorite(id) ? (
@@ -66,7 +72,6 @@ const MovieCard = ({ movie }) => {
 
 const MovieContainer = styled.div`
 	position: relative;
-	/* max-width: 20%; */
 	background-color: #373b69;
 	box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
 	border-bottom-left-radius: 4px;
@@ -75,6 +80,21 @@ const MovieContainer = styled.div`
 
 	@media (max-width: 767px) {
 		width: 100%;
+	}
+
+	.fake-img {
+		display: flex;
+		width: 100%;
+		height: 350px;
+		background-color: red;
+		justify-content: center;
+		align-items: center;
+
+		h2 {
+			color: #fff;
+			font-size: 2.5rem;
+			padding: 0.5rem;
+		}
 	}
 
 	img {

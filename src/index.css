@@ -19,6 +19,10 @@ img {
 	max-width: 100%;
 }
 
+a {
+	text-decoration: none;
+}
+
 .container {
 	width: 95vw;
 	margin: 0 auto;

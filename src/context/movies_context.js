@@ -117,15 +117,17 @@ export const MoviesProvider = ({ children }) => {
 		}
 
 		if (state.query) {
+			dispatch({ type: 'GET_CATEGORY', payload: '' })
 			fetchMovies(
 				`${API_ENDPOINT}search/movie?api_key=9d64e2a5fae568c0beed810bbf76d497&query=${state.query}&page=${state.currentPage}`
 			)
-			dispatch({ type: 'GET_CATEGORY', payload: '' })
 			return
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [state.category, state.currentPage, state.query])
+
+	console.log(state.category)
 
 	useEffect(() => {
 		localStorage.setItem('favorite', JSON.stringify(state.favoriteMovies))

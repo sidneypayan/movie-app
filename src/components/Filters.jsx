@@ -1,24 +1,40 @@
-import { useState } from 'react'
+import { useMoviesContext } from '../context/movies_context'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Filters = () => {
-	// const [toggleFilters, setToggleFilters] = useState(false)
+	const { dispatch } = useMoviesContext()
 
 	return (
 		<Wrapper>
 			<ul>
 				<li>
-					<NavLink to='/popular'>Films populaires</NavLink>
+					<NavLink
+						to='/popular'
+						onClick={() => dispatch({ type: 'SET_QUERY', payload: '' })}>
+						Films populaires
+					</NavLink>
 				</li>
 				<li>
-					<NavLink to='/now_playing'>Films à l'affiche</NavLink>
+					<NavLink
+						to='/now_playing'
+						onClick={() => dispatch({ type: 'SET_QUERY', payload: '' })}>
+						Films à l'affiche
+					</NavLink>
 				</li>
 				<li>
-					<NavLink to='/upcoming'>Films à venir</NavLink>
+					<NavLink
+						to='/upcoming'
+						onClick={() => dispatch({ type: 'SET_QUERY', payload: '' })}>
+						Films à venir
+					</NavLink>
 				</li>
 				<li>
-					<NavLink to='/top_rated'>Les mieux notés</NavLink>
+					<NavLink
+						to='/top_rated'
+						onClick={() => dispatch({ type: 'SET_QUERY', payload: '' })}>
+						Les mieux notés
+					</NavLink>
 				</li>
 			</ul>
 		</Wrapper>
