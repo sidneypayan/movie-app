@@ -72,6 +72,18 @@ const movies_reducer = (state, action) => {
 			}
 		}
 	}
+
+	if (action.type === 'SEARCH_MOVIE_IN_USER_DB') {
+		const { movies } = state
+
+		let tempMovies = [...movies]
+
+		tempMovies = tempMovies.filter(movie =>
+			movie.original_title.toLowerCase().startsWith(action.payload)
+		)
+
+		return { ...state, movies: tempMovies }
+	}
 }
 
 export default movies_reducer

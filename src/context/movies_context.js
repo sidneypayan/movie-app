@@ -23,6 +23,7 @@ const initialState = {
 
 export const MoviesProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState)
+	console.log(state.movies)
 
 	const setQuery = query => {
 		dispatch({ type: 'SET_QUERY', payload: query })
@@ -104,12 +105,24 @@ export const MoviesProvider = ({ children }) => {
 		dispatch({ type: 'GET_MOVIES_SUCCESS', payload: newMovies })
 	}
 
+	const searchInUserDB = query => {
+		dispatch({
+			type: 'SEARCH_MOVIE_IN_USER_DB',
+			payload: query,
+		})
+	}
+
 	// useEffect
 
 	useEffect(() => {
 		if (state.category === 'favorite' || state.category === 'watched') {
-			getMoviesFromDB(state.category)
-			return
+			if (state.query) {
+				searchInUserDB(state.query)
+				return
+			} else {
+				getMoviesFromDB(state.category)
+				return
+			}
 		} else if (state.category) {
 			fetchMovies(
 				`${API_ENDPOINT}movie/${state.category}?api_key=9d64e2a5fae568c0beed810bbf76d497&page=${state.currentPage}`
