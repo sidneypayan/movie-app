@@ -114,13 +114,13 @@ export const MoviesProvider = ({ children }) => {
 			return
 		} else if (state.category) {
 			fetchMovies(
-				`${API_ENDPOINT}movie/${state.category}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&page=${state.currentPage}`
+				`${API_ENDPOINT}movie/${state.category}?api_key=REACT_APP_MOVIE_API_KEY&page=${state.currentPage}`
 			)
 		}
 
 		if (state.query) {
 			fetchMovies(
-				`${API_ENDPOINT}search/movie?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&query=${state.query}&page=${state.currentPage}`
+				`${API_ENDPOINT}search/movie?api_key=REACT_APP_MOVIE_API_KEY&query=${state.query}&page=${state.currentPage}`
 			)
 			dispatch({ type: 'GET_CATEGORY', payload: '' })
 			return
