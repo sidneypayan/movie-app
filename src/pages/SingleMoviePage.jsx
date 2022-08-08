@@ -37,6 +37,7 @@ const SingleMoviePage = () => {
 			<div className='single-movie-container'>
 				{poster_path ? (
 					<img
+						className='single-movie-img'
 						src={`https://image.tmdb.org/t/p/w1280${poster_path}`}
 						alt={original_title}
 					/>
@@ -44,32 +45,38 @@ const SingleMoviePage = () => {
 					<img src={noImg} alt={original_title} />
 				)}
 				<div>
+					<h1 className='single-movie-title'>{original_title}</h1>
 					<p>{overview}</p>
-					<div className='movie-info-container'>
-						<div className='movie-info-category '>
-							<span className='color-1'>date de sortie</span> {date}
+					<div className='single-movie-categories-container'>
+						<div className='single-movie-info-category '>
+							<span className='category-title'>date de sortie</span> {date}
 						</div>
-						<div className='movie-info-category'>
-							<span className='color-2'>note</span> {vote_average}
+						<div className='single-movie-info-category'>
+							<span className='category-title'>note</span> {vote_average}
 						</div>
-						<div className='movie-info-category'>
-							<span className='color-3'>budget</span> {formatPrice(budget)}
+						<div className='single-movie-info-category'>
+							<span className='category-title'>budget</span>{' '}
+							{formatPrice(budget)}
 						</div>
-						<div className='movie-info-category'>
-							<span className='color-4'>profit</span> {formatPrice(revenue)}
+						<div className='single-movie-info-category'>
+							<span className='category-title'>profit</span>{' '}
+							{formatPrice(revenue)}
 						</div>
-						<div className='movie-info-category'>
-							<span className='color-5'>genres</span>
+						<div className='single-movie-info-category'>
+							<span className='category-title'>genres</span>
 							{genres && genres.map(item => <span> {item.name}</span>)}
 						</div>
-						<div className='movie-info-category'>
-							<span className='color-6'>studio de production</span>
+						<div className='single-movie-info-category'>
+							<span className='category-title'>studio de production</span>
 							{production_companies &&
 								production_companies.map(item => <span> {item.name}</span>)}
 						</div>
 					</div>
-					<button className='btn' type='button' onClick={() => navigate(-1)}>
-						Retour
+					<button
+						className='btn btn-back'
+						type='button'
+						onClick={() => navigate(-1)}>
+						&larr; Retour aux films
 					</button>
 				</div>
 			</div>
@@ -78,56 +85,56 @@ const SingleMoviePage = () => {
 }
 
 const Wrapper = styled.div`
-	width: 65%;
+	width: 65vw;
 	margin: 4rem auto;
+
+	@media (max-width: 1279px) {
+		width: 90vw;
+	}
 
 	.single-movie-container {
 		display: flex;
 		gap: 4rem;
 		color: #fff;
-		img {
-			width: 450px;
-		}
 
-		@media (max-width: 768px) {
-			display: block;
+		@media (max-width: 1179px) {
+			flex-direction: column;
 		}
 	}
 
-	.movie-info-container {
+	.single-movie-img {
+		margin: 0 auto;
+		min-width: 350px;
+		width: 30%;
+	}
+
+	.single-movie-title {
+		margin-bottom: 1.5rem;
+	}
+
+	.single-movie-categories-container {
+		width: 70%;
 		margin-top: 2rem;
 		display: flex;
 		flex-direction: column;
 	}
 
-	.movie-info-category {
+	.single-movie-info-category {
 		margin-bottom: 1rem;
 
 		span {
 			border-radius: 5px;
-			padding: 0.2rem;
+			padding: 0.25rem;
 		}
-		.color-1 {
-			background-color: #fcbf49;
+
+		.category-title {
+			background-color: #373b69;
 		}
-		.color-2 {
-			background-color: #ee6c4d;
-		}
-		.color-3 {
-			background-color: #8cb369;
-		}
-		.color-4 {
-			background-color: #227c9d;
-		}
-		.color-4 {
-			background-color: #0582ca;
-		}
-		.color-5 {
-			background-color: #495867;
-		}
-		.color-6 {
-			background-color: #f19c79;
-		}
+	}
+
+	.btn-back {
+		margin: 0 auto;
+		margin-top: 2rem;
 	}
 `
 
