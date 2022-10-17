@@ -49,7 +49,7 @@ const Wrapper = styled.nav`
 
 	li {
 		border: 2px solid #22254b;
-		padding: 0.25rem 0.5rem;
+		padding: 0.5rem 0.5rem;
 		margin-right: 1rem;
 		border-radius: 50px;
 		cursor: pointer;
